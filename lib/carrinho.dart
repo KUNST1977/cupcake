@@ -28,27 +28,35 @@ class _CarrinhoScreenState extends State<CarrinhoScreen> {
           style: TextStyle(fontSize: 22, color: Colors.white),
         ),
         backgroundColor: Colors.deepPurpleAccent,
+        foregroundColor: Colors.white,
         centerTitle: true,
       ),
       body: Column(
         children: [
-          // Botão para continuar comprando
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: ElevatedButton.icon(
               onPressed: () {
                 Navigator.pop(context); // Volta para a vitrine
               },
-              icon: const Icon(Icons.shopping_bag),
-              label: const Text('Continuar Comprando'),
+              icon: const Icon(
+                Icons.shopping_bag,
+                color: Colors.white,
+              ),
+              label: const Text(
+                'Continuar Comprando',
+                style: TextStyle(color: Colors.white),
+              ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.brown,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5), // Borda quadrada
+                ),
                 padding:
-                    const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                    const EdgeInsets.symmetric(vertical: 8, horizontal: 100),
               ),
             ),
           ),
-          // Lista de itens do carrinho
           Expanded(
             child: widget.cartItems.isEmpty
                 ? const Center(
@@ -69,7 +77,6 @@ class _CarrinhoScreenState extends State<CarrinhoScreen> {
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
                             children: [
-                              // Imagem do produto
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(8),
                                 child: Image.network(
@@ -80,7 +87,6 @@ class _CarrinhoScreenState extends State<CarrinhoScreen> {
                                 ),
                               ),
                               const SizedBox(width: 12),
-                              // Detalhes do item
                               Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,7 +116,6 @@ class _CarrinhoScreenState extends State<CarrinhoScreen> {
                                   ],
                                 ),
                               ),
-                              // Controle de quantidade
                               Row(
                                 children: [
                                   IconButton(
@@ -157,7 +162,6 @@ class _CarrinhoScreenState extends State<CarrinhoScreen> {
                     },
                   ),
           ),
-          // Subtotal e botão de continuar
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
@@ -184,12 +188,11 @@ class _CarrinhoScreenState extends State<CarrinhoScreen> {
                   ],
                 ),
                 const SizedBox(height: 16),
-                // Botão para finalizar o pedido
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      // Aqui você pode implementar a lógica de gravar o pedido no banco
+                      // implementar a lógica de gravar o pedido no banco
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text('Pedido realizado com sucesso!'),
@@ -201,6 +204,9 @@ class _CarrinhoScreenState extends State<CarrinhoScreen> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.deepPurpleAccent,
                       padding: const EdgeInsets.symmetric(vertical: 12),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
                     ),
                     child: const Text(
                       'Concluir Pedido',
